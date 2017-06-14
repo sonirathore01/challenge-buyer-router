@@ -6,7 +6,7 @@ var servertest = require('servertest')
 var querystring = require('querystring')
 
 var buyers = require('./buyers.json')
-var server = require('../lib/server')()
+var server = require('../lib/server')
 
 tape('should add buyers', function (t) {
   map(buyers, addBuyer, function (err) {
@@ -15,7 +15,7 @@ tape('should add buyers', function (t) {
   })
 
   function addBuyer (buyer, cb) {
-    var opts = { encoding: 'json', method: 'POST' }
+    var opts = {encoding: 'json', method: 'POST'}
     var stream = servertest(server, '/buyers', opts, function (err, res) {
       t.equal(res.statusCode, 201, 'correct statusCode')
       cb(err)
@@ -26,14 +26,14 @@ tape('should add buyers', function (t) {
 })
 
 tape('should not add invalid buyer', function (t) {
-  var opts = { encoding: 'json', method: 'POST' }
+  var opts = {encoding: 'json', method: 'POST'}
   var stream = servertest(server, '/buyers', opts, function (err, res) {
     t.ifError(err, 'should not error')
     t.ok(res.statusCode >= 400, 'error statusCode')
     t.end()
   })
 
-  stream.end("{'invalid': json")
+  stream.end('{\'invalid\': json')
 })
 
 tape('should get buyers', function (t) {
@@ -43,7 +43,7 @@ tape('should get buyers', function (t) {
   })
 
   function getBuyer (buyer, cb) {
-    var opts = { encoding: 'json' }
+    var opts = {encoding: 'json'}
     servertest(server, '/buyers/' + buyer.id, opts, function (err, res) {
       if (err) return cb(err)
       t.equal(res.statusCode, 200, 'correct statusCode')

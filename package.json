@@ -12,10 +12,11 @@
     "fakeredis": "^2.0.0",
     "map-async": "^0.1.1",
     "servertest": "^1.2.1",
-    "standard": "^8.6.0",
+    "standard": "^10.0.2",
     "tape": "^4.6.3"
   },
   "dependencies": {
+    "lodash": "^4.17.4",
     "redis": "2.7.1"
   },
   "directories": {
